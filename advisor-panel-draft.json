@@ -1,0 +1,111 @@
+{
+  "authorName": "Kennedy Johnson",
+  "panelName": "MuscleGrowthAI",
+  "purpose": "Help people build a personalized muscle-building plan for a specific muscle group and/or for general bodybuilding.",
+  "advisors": [
+    {
+      "name": "Hypertrophy Coach",
+      "role": "Muscle Building & Program Design"
+    },
+    {
+      "name": "Nutrition Strategist",
+      "role": "Protein, Macros & Fueling"
+    },
+    {
+      "name": "Recovery Specialist",
+      "role": "Rest, Mobility & Post-Workout Care"
+    },
+    {
+      "name": "Form & Safety Coach",
+      "role": "Technique, Breathing & Injury Prevention"
+    },
+    {
+      "name": "Program Planner",
+      "role": "Scheduling, Tracking & Progression"
+    }
+  ],
+  "visionApplicationPurpose": "Help people build a personalized muscle-building plan for a specific muscle group and/or for general bodybuilding.",
+  "visionTargetAudience": "Anyone into fitness and gym-goers who body-build with dumbbells, weights, or any form of exercise with equipment. People who go to commercial gyms or an at-home gym.",
+  "visionKeyOutcomes": "Personalized fitness workout plan based on preferred gym goals and target muscle groups with sets, reps, and form. Encouraging hypertrophy, safety, and breathing techniques.",
+  "appTitle": "AI Personalized Bodybuilding Plan",
+  "appSubtitle": "AI Fitness Plan for Growth",
+  "primaryBrandColor": "#7C3AED",
+  "logoIcon": "Dumbbell",
+  "footerText": "© 2026 Kennedy Johnson. All rights reserved.",
+  "headlinePrefix": "Develop an AI crafted personalized Body Building Plan",
+  "headlineHighlight": "Resourceful AI Fitness Content",
+  "homepageDescription": "Receive a plan that grows your muscles and tailors to your physical needs. Specific fitness plans for your specific needs.",
+  "featuresSectionTitle": "Why Use MuscleGrowthAI?",
+  "featureCards": [
+    {
+      "title": "Well Crafted Fitness Plan",
+      "icon": "ScanSearch",
+      "description": "Step-by-step workout layouts for each muscle group with sets and reps to maximize growth, wellness, and hypertrophy."
+    },
+    {
+      "title": "Post-Workout Recovery",
+      "icon": "HeartPulse",
+      "description": "Post-workout tips for protein goals, dynamic stretches, and optional cardio based on personalized goals."
+    },
+    {
+      "title": "Progress Tracker",
+      "icon": "TrendingUp",
+      "description": "Trackable metrics and progression guidance so you can measure gains and adjust your program over time."
+    }
+  ],
+  "loginPageSubtitle": "Sign up to build your dream physique",
+  "signupPageSubtitle": "Create an account to see your definite progress",
+  "userInfoRows": [
+    {
+      "infoBoxLabel": "Fitness Level",
+      "dropdownChoices": "Beginner, Intermediate, Advanced, In-between, At-home gym-goer, Run & Cardio, Strength Training"
+    }
+  ],
+  "examplePromptCards": [
+    {
+      "title": "Personalized Fitness Layout",
+      "icon": "Dumbbell",
+      "prompts": [
+        "What muscles do I train to build a certain physique?",
+        "What nutrients and foods should I prioritize to maintain my progress?",
+        "Based on my schedule, how often should I workout to maintain growth?"
+      ]
+    },
+    {
+      "title": "Hypertrophy & Programming",
+      "icon": "BicepsFlexed",
+      "prompts": [
+        "Design a 4-day split for chest, back, legs, and shoulders.",
+        "How many sets and reps should I use for bicep growth?",
+        "When should I deload during a hypertrophy block?"
+      ]
+    },
+    {
+      "title": "Nutrition & Recovery",
+      "icon": "Apple",
+      "prompts": [
+        "How much protein should I consume daily based on my macros?",
+        "What should my post-workout meal look like for muscle gain?",
+        "Which stretches help recovery after leg day?"
+      ]
+    },
+    {
+      "title": "Form, Safety & Progress",
+      "icon": "ShieldCheck",
+      "prompts": [
+        "How do I brace and breathe during heavy squats?",
+        "What metrics should I track to see if I'm gaining muscle?",
+        "How do I adjust my program if my joints feel sore?"
+      ]
+    }
+  ],
+  "chatInputPlaceholder": "Ask about protein based on your macros, workout frequency for your schedule, or how to target a muscle group...",
+  "sharedBasePrompt": "base_prompt: |\n  **Formatting (Compact Markdown v1):**\n  - Use GitHub-Flavored Markdown.\n  - Output exactly three sections in this order:\n    - `### Thought` -- one sentence that reflects on the user's situation from YOUR perspective.\n    - `### What to do` -- exactly 3 bullets, one line each, with practical actions.\n    - `### Next step` -- one imperative sentence telling the user what to do now.\n  - Use `###` for headings and `-` for bullets.\n  - Insert one blank line between sections.\n  - Keep each section unique and non-repetitive.",
+  "includedPersonaIds": [
+    "hypertrophy_coach",
+    "nutrition_strategist",
+    "recovery_specialist",
+    "form_safety_coach",
+    "program_planner"
+  ]
+}

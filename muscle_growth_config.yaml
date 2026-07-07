@@ -1,0 +1,203 @@
+# ============================================================================
+# MuscleGrowthAI — Application Configuration
+# Generated from advisor-panel-draft (MuscleGrowthAI) by Kennedy Johnson
+# Modeled on CCAI-Demo-Clary FEAT_CybersecurityCanvas
+# ============================================================================
+
+app:
+  title: "AI Personalized Bodybuilding Plan"
+  subtitle: "AI Fitness Plan for Growth"
+  primary_color: "#7C3AED"
+  logo_icon: "Dumbbell"
+  footer_text: "© 2026 Kennedy Johnson. All rights reserved."
+  user_avatars:
+    - { id: "dumbbell-purple", icon: "Dumbbell", color: "#7C3AED", bg: "#F3E8FF" }
+    - { id: "user-blue", icon: "User", color: "#2563EB", bg: "#EFF6FF" }
+    - { id: "heart-red", icon: "HeartPulse", color: "#DC2626", bg: "#FEF2F2" }
+    - { id: "apple-green", icon: "Apple", color: "#059669", bg: "#ECFDF5" }
+    - { id: "trend-amber", icon: "TrendingUp", color: "#F59E0B", bg: "#FFFBEB" }
+    - { id: "shield-cyan", icon: "ShieldCheck", color: "#0891B2", bg: "#ECFEFF" }
+    - { id: "calendar-rose", icon: "CalendarRange", color: "#E11D48", bg: "#FFF1F2" }
+    - { id: "biceps-indigo", icon: "BicepsFlexed", color: "#4F46E5", bg: "#EEF2FF" }
+
+homepage:
+  headline_prefix: "Develop an AI crafted personalized Body Building Plan"
+  headline_highlight: "Resourceful AI Fitness Content"
+  description: >-
+    Receive a plan that grows your muscles and tailors to your physical needs.
+    Specific fitness plans for your specific goals — from hypertrophy programming
+    and nutrition to recovery, form, and progress tracking.
+  features_title: "Why Use MuscleGrowthAI?"
+  features:
+    - title: "Well Crafted Fitness Plan"
+      description: "Step-by-step workout layouts for each muscle group with sets and reps to maximize growth, wellness, and hypertrophy."
+      icon: "ScanSearch"
+    - title: "Post-Workout Recovery"
+      description: "Post-workout tips for protein goals, dynamic stretches, and optional cardio based on your personalized goals."
+      icon: "HeartPulse"
+    - title: "Progress Tracker"
+      description: "Trackable metrics and progression guidance so you can measure gains and adjust your program over time."
+      icon: "TrendingUp"
+
+login:
+  subtitle: "Sign up to build your dream physique"
+  signup_subtitle: "Create an account to see your definite progress"
+  knowledge_levels:
+    - { value: "", label: "Select your fitness level" }
+    - { value: "beginner", label: "Beginner" }
+    - { value: "intermediate", label: "Intermediate" }
+    - { value: "advanced", label: "Advanced" }
+    - { value: "in_between", label: "In-between" }
+    - { value: "at_home", label: "At-home gym-goer" }
+    - { value: "cardio_focus", label: "Run & Cardio" }
+    - { value: "strength_focus", label: "Strength Training" }
+  timezones:
+    - { value: "", label: "Select timezone (optional)" }
+    - { value: "America/New_York", label: "Eastern (US)" }
+    - { value: "America/Chicago", label: "Central (US)" }
+    - { value: "America/Denver", label: "Mountain (US)" }
+    - { value: "America/Los_Angeles", label: "Pacific (US)" }
+    - { value: "America/Anchorage", label: "Alaska (US)" }
+    - { value: "Pacific/Honolulu", label: "Hawaii (US)" }
+    - { value: "UTC", label: "UTC" }
+  academic_stages:
+    - { value: "", label: "Select your fitness level" }
+    - { value: "beginner", label: "Beginner" }
+    - { value: "intermediate", label: "Intermediate" }
+    - { value: "advanced", label: "Advanced" }
+    - { value: "in_between", label: "In-between" }
+    - { value: "at_home", label: "At-home gym-goer" }
+    - { value: "cardio_focus", label: "Run & Cardio" }
+    - { value: "strength_focus", label: "Strength Training" }
+
+chat_page:
+  placeholder: "Ask about protein based on your macros, workout frequency for your schedule, or how to target a muscle group..."
+  examples:
+    - title: "Personalized Fitness Layout"
+      icon: "Dumbbell"
+      color: "#7C3AED"
+      bg_color: "#F3E8FF"
+      suggestions:
+        - "What muscles do I train to build a certain physique?"
+        - "What nutrients and foods should I prioritize to maintain my progress?"
+        - "Based on my schedule, how often should I workout to maintain growth?"
+    - title: "Hypertrophy & Programming"
+      icon: "BicepsFlexed"
+      color: "#2563EB"
+      bg_color: "#EFF6FF"
+      suggestions:
+        - "Design a 4-day split for chest, back, legs, and shoulders."
+        - "How many sets and reps should I use for bicep growth?"
+        - "When should I deload during a hypertrophy block?"
+    - title: "Nutrition & Recovery"
+      icon: "Apple"
+      color: "#059669"
+      bg_color: "#ECFDF5"
+      suggestions:
+        - "How much protein should I consume daily based on my macros?"
+        - "What should my post-workout meal look like for muscle gain?"
+        - "Which stretches help recovery after leg day?"
+    - title: "Form, Safety & Progress"
+      icon: "ShieldCheck"
+      color: "#F59E0B"
+      bg_color: "#FFFBEB"
+      suggestions:
+        - "How do I brace and breathe during heavy squats?"
+        - "What metrics should I track to see if I'm gaining muscle?"
+        - "How do I adjust my program if my joints feel sore?"
+
+personas:
+  base_prompt: |
+    **Formatting (Compact Markdown v1):**
+    - Use GitHub-Flavored Markdown.
+    - Output exactly three sections in this order:
+      - `### Thought` — one sentence that reflects on the user's situation from YOUR perspective.
+      - `### What to do` — exactly 3 bullets, one line each, with practical actions.
+      - `### Next step` — one imperative sentence telling the user what to do now.
+    - Use `###` for headings and `-` for bullets.
+    - Insert one blank line between sections.
+    - Keep each section unique and non-repetitive.
+    - Prioritize safety: recommend consulting a physician for pain, injury, or medical conditions.
+  personas_dir: "personas/fitness_advisors"
+
+orchestrator:
+  min_words_without_keywords: 6
+  conversation_history_token_threshold: 4000
+  specific_keywords:
+    - "muscle"
+    - "hypertrophy"
+    - "workout"
+    - "training"
+    - "gym"
+    - "lift"
+    - "rep"
+    - "set"
+    - "protein"
+    - "macro"
+    - "calorie"
+    - "bulk"
+    - "cut"
+    - "recovery"
+    - "stretch"
+    - "cardio"
+    - "form"
+    - "squat"
+    - "deadlift"
+    - "bench"
+    - "dumbbell"
+    - "barbell"
+    - "bodybuilding"
+    - "physique"
+    - "progress"
+    - "deload"
+  clarification_questions:
+    - "What is your primary goal — muscle gain, strength, recomposition, or general fitness?"
+    - "Which muscle group or training split are you asking about?"
+    - "What equipment do you have access to (commercial gym, home gym, dumbbells only)?"
+    - "How many days per week can you realistically train?"
+  clarification_suggestions:
+    - "Ask for a personalized workout split for your schedule"
+    - "Request protein and macro guidance for your goals"
+    - "Get post-workout recovery and stretching recommendations"
+    - "Upload a training log or program for review"
+
+auth:
+  algorithm: "HS256"
+  token_expiry_minutes: 43200
+
+mongodb:
+  database_name: "muscle_growth_advisor"
+
+llm:
+  provider: "gemini"
+  gemini:
+    model: "gemini-2.5-flash"
+  ollama:
+    model: "llama3.2:1b"
+  vllm:
+    api_url: ""
+    api_key: ""
+    api_username: "guest"
+    model_id: ""
+    neon_persona_orchestrator: "vanilla"
+    neon_persona_advisors: "vanilla"
+  openai:
+    api_key: ""
+    model: "gpt-5.4"
+    orchestrator_reasoning_effort: "low"
+    persona_reasoning_effort: "none"
+  resilient:
+    race_timeout_seconds: 60
+
+rag:
+  embedding_model: "all-MiniLM-L6-v2"
+  chroma_collection: "muscle_growth_documents"
+
+tools:
+  current_datetime:
+    enabled: true
+    default_timezone: "America/Denver"
+
+voice:
+  stt_endpoint: "https://whisper.neonaiservices.com"
+  tts_endpoint: "https://coqui.neonaiservices.com"
