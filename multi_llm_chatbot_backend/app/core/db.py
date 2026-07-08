@@ -89,9 +89,21 @@ _TABLE_NAMES = {t[0] for t in _TABLES}
 
 def _data_dir() -> Path:
     raw = os.environ.get("DATA_DIR") or "/data"
-    p = Path(raw).expanduser()
-    p.mkdir(parents=True, exist_ok=True)
-    return p
+    candidates = [Path(raw).expanduser()]
+    # On HF Spaces the /data bucket mount is not always writable; fall back to
+    # the home dir and finally /tmp so the SQLite store always has somewhere
+    # to live.
+    if str(candidates[0]) == "/data":
+        candidates.append(Path.home() / "data")
+    for p in candidates:
+        try:
+            p.mkdir(parents=True, exist_ok=True)
+            return p
+        except (PermissionError, OSError):
+            LOG.warning("Cannot create data dir %s; trying fallback", p)
+    fallback = Path.home() / ".muscle_growth_data"
+    fallback.mkdir(parents=True, exist_ok=True)
+    return fallback
 
 
 def _db_path() -> Path:
