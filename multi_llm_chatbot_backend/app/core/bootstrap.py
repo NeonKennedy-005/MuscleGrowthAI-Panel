@@ -18,7 +18,7 @@ from app.models.default_personas import get_default_personas
 settings = get_settings()
 
 current_provider = settings.llm.provider or "vllm"
-available_providers = ["ollama", "gemini", "vllm"]
+available_providers = ["ollama", "gemini", "vllm", "openai"]
 
 
 def _load_shared_env_var(name: str) -> str:
@@ -114,6 +114,11 @@ def _wrap_resilient(primary: ImprovedVllmClient, fallback: OpenAIFallbackClient,
 def create_llm_client(provider=None):
     if provider is None:
         provider = current_provider
+    if provider == "openai":
+        # Standalone OpenAI (GPT) client. OpenAIFallbackClient implements the same
+        # LLMClient interface as the Gemini client, so it works as the primary
+        # orchestrator/persona LLM, not just a vLLM fallback.
+        return _build_openai(settings.llm.openai.orchestrator_reasoning_effort)
     if provider == "gemini":
         return ImprovedGeminiClient(model_name=settings.llm.gemini.model)
     if provider == "vllm":
