@@ -1,6 +1,28 @@
 .DS_Store
-.env
+Thumbs.db
+
+# Python
 *.pyc
 __pycache__/
 .venv/
 venv/
+*.egg-info/
+
+# Node / CRA
+node_modules/
+phd-advisor-frontend/build/
+build/
+
+# Backend build artifacts / runtime data
+multi_llm_chatbot_backend/static/
+static/
+local_data/
+*.db
+**/chroma_data/
+**/chroma_db/
+**/chromadb_storage/
+
+# Secrets / env
+.env
+**/.env
+!**/.env.example
