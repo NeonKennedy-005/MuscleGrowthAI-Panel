@@ -1,14 +1,24 @@
+---
+title: MuscleGrowthAI
+emoji: 💪
+colorFrom: purple
+colorTo: indigo
+sdk: docker
+pinned: false
+app_port: 7860
+---
+
 # MuscleGrowthAI Panel
 
-CCAI advisor panel configuration for **MuscleGrowthAI**, modeled on [NeonClary/CCAI-Demo-Clary `FEAT_CybersecurityCanvas`](https://github.com/NeonClary/CCAI-Demo-Clary/tree/FEAT_CybersecurityCanvas).
+An AI personalized bodybuilding assistant built on Neon AI's Collaborative
+Conversational AI (CCAI) framework. Ask about hypertrophy programming,
+nutrition, recovery, form, and progress tracking and get diverse perspectives
+from a panel of five fitness AI advisors.
 
-## What's in this folder
-
-| File / folder | Purpose |
-|---------------|---------|
-| `muscle_growth_config.yaml` | App UI, login fields, chat examples, orchestrator keywords, LLM/RAG settings |
-| `personas/fitness_advisors/*.yaml` | Five advisor personas loaded at runtime |
-| `advisor-panel-draft.json` | Completed draft (filled advisors + Lucide icon names) |
+This repository is a **complete, deployable application** — the CCAI
+multi-advisor stack (FastAPI backend + React frontend) wired to the
+MuscleGrowthAI configuration in [`muscle_growth_config.yaml`](muscle_growth_config.yaml)
+and the personas in [`personas/fitness_advisors/`](personas/fitness_advisors).
 
 ## Advisors
 
@@ -18,84 +28,82 @@ CCAI advisor panel configuration for **MuscleGrowthAI**, modeled on [NeonClary/C
 4. **Form & Safety Coach** — technique, breathing, injury prevention
 5. **Program Planner** — scheduling, tracking, progression
 
-## Integrate into CCAI-Demo-Clary
+## Hugging Face Spaces deployment
 
-### 1. Clone the reference repo
+This Space ships as a single Docker image built from the repository-root
+[`Dockerfile`](Dockerfile). The container:
 
-```bash
-git clone -b FEAT_CybersecurityCanvas https://github.com/NeonClary/CCAI-Demo-Clary.git
-cd CCAI-Demo-Clary
-git checkout -b FEAT_MuscleGrowthAI
-```
+1. Builds the React frontend (CRA) at image-build time with `REACT_APP_API_URL=""`
+   so every `fetch` issues a relative URL.
+2. Serves the bundled SPA from FastAPI at `/`, with the API on `/api/...`,
+   `/auth/...`, etc. — all on the same `:7860` origin.
+3. Persists user data (auth, profiles, chat sessions) in **SQLite via
+   `aiosqlite`** at `${DATA_DIR}/muscle_growth_panel.db`. Mount a Hugging Face
+   Storage Bucket at `/data` to make the database survive Space rebuilds.
+   There is **no MongoDB** and no third-party data plane.
 
-### 2. Copy panel files
+### Required Space secrets
 
-```bash
-cp /path/to/MuscleGrowthAI/muscle_growth_config.yaml .
-cp -R /path/to/MuscleGrowthAI/personas/fitness_advisors personas/
-```
+| Secret | Purpose |
+|--------|---------|
+| `JWT_SECRET_KEY` | Signs auth tokens. Set this to a long random string. |
+| `GEMINI_API_KEY` | Powers the default Gemini provider (`gemini-2.5-flash`). Get one at [Google AI Studio](https://aistudio.google.com/app/apikey). |
+| `OPENAI_API_KEY` | Optional — only if you switch `llm.provider` to `openai`. |
 
-### 3. Point the app at your config
+Set these under **Settings → Variables and secrets** on the Space.
 
-**Local backend** — in `multi_llm_chatbot_backend/.env`:
+## Local deployment
 
-```env
-CONFIG_PATH=/absolute/path/to/CCAI-Demo-Clary/muscle_growth_config.yaml
-JWT_SECRET_KEY=your-long-random-secret
-GEMINI_API_KEY=your-gemini-key
-```
+**Do you need Docker?** No — Docker is optional. There are two supported paths,
+and neither requires MongoDB (persistence is SQLite):
 
-**Docker / Hugging Face Space** — edit the root `Dockerfile` `ENV CONFIG_PATH` line:
+### Option A — Docker (simplest, mirrors the Space exactly)
 
-```dockerfile
-ENV CONFIG_PATH=/home/user/app/muscle_growth_config.yaml
-```
-
-And add a `COPY` line alongside the other configs:
-
-```dockerfile
-COPY --chown=user muscle_growth_config.yaml ./muscle_growth_config.yaml
-```
-
-### 4. Run locally
+Requires **Docker Desktop** only.
 
 ```bash
-# Backend
+# From the repo root, create a .env with at least:
+#   JWT_SECRET_KEY=some-long-random-string
+#   GEMINI_API_KEY=your-gemini-key
+docker compose up --build
+```
+
+Open <http://localhost:7860>. Override the host port with `MUSCLE_HOST_PORT` if
+7860 is taken.
+
+### Option B — Native (no Docker)
+
+Requires **Python 3.12** and **Node.js 20+** (no Docker, no MongoDB).
+
+**Backend** (terminal 1):
+
+```bash
 cd multi_llm_chatbot_backend
-python -m venv venv && source venv/bin/activate
+python -m venv venv
+# Windows: venv\Scripts\activate   •   macOS/Linux: source venv/bin/activate
 pip install -r requirements.txt
-CONFIG_PATH=../muscle_growth_config.yaml uvicorn app.main:app --reload --port 8000
+cp .env.example .env         # then edit JWT_SECRET_KEY + GEMINI_API_KEY
+uvicorn app.main:app --reload --port 8000
+```
 
-# Frontend (separate terminal)
+**Frontend** (terminal 2):
+
+```bash
 cd phd-advisor-frontend
 npm install
-REACT_APP_API_URL=http://localhost:8000 npm start
+# point the SPA at the backend from step above:
+#   Windows PowerShell:  $env:REACT_APP_API_URL="http://localhost:8000"; npm start
+#   macOS/Linux:         REACT_APP_API_URL=http://localhost:8000 npm start
+npm start
 ```
 
-Open http://localhost:3000 — you should see **AI Personalized Bodybuilding Plan** with five fitness advisors.
+Open <http://localhost:3000> — you should see **AI Personalized Bodybuilding
+Plan** with the five fitness advisors.
 
-## Draft JSON → YAML mapping
+## Configuration
 
-Your canvas draft fields map to `muscle_growth_config.yaml` like this:
-
-| Draft JSON field | YAML section |
-|------------------|--------------|
-| `appTitle`, `appSubtitle`, `primaryBrandColor` | `app:` |
-| `headlinePrefix`, `headlineHighlight`, `homepageDescription` | `homepage:` |
-| `featureCards` | `homepage.features` (icons → Lucide names) |
-| `loginPageSubtitle`, `signupPageSubtitle` | `login:` |
-| `userInfoRows` | `login.knowledge_levels` |
-| `examplePromptCards` | `chat_page.examples` |
-| `chatInputPlaceholder` | `chat_page.placeholder` |
-| `sharedBasePrompt` | `personas.base_prompt` |
-| `includedPersonaIds` / `advisors` | `personas/fitness_advisors/*.yaml` |
-
-## Note on this machine
-
-Xcode Command Line Tools (and `git`) are not installed here yet. Install them with `xcode-select --install` before cloning or pushing a branch.
-
-## Next steps (optional)
-
-- Deploy as a Hugging Face Space (copy Dockerfile pattern from the cybersecurity branch)
-- Add custom advisor avatars under `multi_llm_chatbot_backend/app/assets/avatars/`
-- Tune `orchestrator.specific_keywords` as you test real user questions
+All branding, login fields, chat examples, orchestrator keywords, and LLM/RAG
+settings live in [`muscle_growth_config.yaml`](muscle_growth_config.yaml). The
+backend resolves `personas.personas_dir` relative to that file, so the advisor
+YAMLs in `personas/fitness_advisors/` load automatically. Point the app at a
+different config with the `CONFIG_PATH` environment variable.
