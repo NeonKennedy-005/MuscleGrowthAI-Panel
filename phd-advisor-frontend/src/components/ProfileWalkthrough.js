@@ -17,13 +17,14 @@ const buildSteps = (config) => {
       fields: [
         {
           key: 'knowledge_level',
-          label: 'Cybersecurity knowledge level',
+          label: 'Fitness level',
           type: 'select',
           options: knowledgeLevels.length
             ? knowledgeLevels
             : [
-                { value: 'newcomer', label: 'New to cybersecurity' },
-                { value: 'practitioner', label: 'Practitioner' },
+                { value: 'beginner', label: 'Beginner' },
+                { value: 'intermediate', label: 'Intermediate' },
+                { value: 'advanced', label: 'Advanced' },
               ],
         },
         {
@@ -37,26 +38,26 @@ const buildSteps = (config) => {
       ],
     },
     {
-      title: 'Role & environment',
+      title: 'Training focus & setup',
       fields: [
-        { key: 'cyber_role', label: 'Your role', type: 'select', options: ['Student / Learner', 'Career changer', 'SOC analyst', 'Security engineer', 'Architect / lead', 'Manager / director', 'Consultant', 'Other'] },
-        { key: 'organization_type', label: 'Organization type', type: 'select', options: ['Startup', 'Mid-size company', 'Enterprise', 'Government / public sector', 'Education', 'MSP / MSSP', 'Independent / job seeker'] },
+        { key: 'cyber_role', label: 'Your training focus', type: 'select', options: ['Beginner lifter', 'General fitness', 'Bodybuilding / hypertrophy', 'Powerlifting / strength', 'Physique / cutting', 'Athlete / sport-specific', 'Home-gym / minimal equipment', 'Other'] },
+        { key: 'organization_type', label: 'Where you train', type: 'select', options: ['Commercial gym', 'Home gym', 'University / campus gym', 'CrossFit box', 'Outdoor / calisthenics', 'Hybrid (home + gym)'] },
       ],
     },
     {
-      title: 'Focus & tools',
+      title: 'Focus & equipment',
       fields: [
-        { key: 'primary_domains', label: 'Primary domains (comma-separated)', type: 'text', placeholder: 'e.g. cloud, appsec, IR, GRC, identity' },
-        { key: 'certifications', label: 'Certifications (comma-separated)', type: 'text', placeholder: 'e.g. Security+, CISSP, OSCP, or none yet' },
-        { key: 'tools_stack', label: 'Tools & platforms (comma-separated)', type: 'text', placeholder: 'e.g. Splunk, CrowdStrike, AWS, Jira' },
+        { key: 'primary_domains', label: 'Focus muscle groups / areas (comma-separated)', type: 'text', placeholder: 'e.g. chest, back, legs, arms, core, conditioning' },
+        { key: 'certifications', label: 'Available equipment (comma-separated)', type: 'text', placeholder: 'e.g. dumbbells, barbell, cables, bands, machines' },
+        { key: 'tools_stack', label: 'Apps & trackers you use (comma-separated)', type: 'text', placeholder: 'e.g. MyFitnessPal, Strong, Hevy, Apple Health' },
       ],
     },
     {
-      title: 'Goals & learning',
+      title: 'Goals & nutrition',
       fields: [
-        { key: 'compliance_focus', label: 'Compliance / frameworks', type: 'text', placeholder: 'e.g. SOC 2, NIST CSF, ISO 27001, HIPAA' },
-        { key: 'current_goals', label: 'Current goals', type: 'textarea', placeholder: 'Audit prep, cert study, incident readiness, architecture review...' },
-        { key: 'learning_preferences', label: 'How you learn best', type: 'text', placeholder: 'Labs, reading, CTFs, mentorship, certifications...' },
+        { key: 'compliance_focus', label: 'Dietary approach / restrictions', type: 'text', placeholder: 'e.g. high-protein, vegetarian, cutting, bulking' },
+        { key: 'current_goals', label: 'Current goals', type: 'textarea', placeholder: 'Muscle gain, fat loss, strength PRs, first pull-up...' },
+        { key: 'learning_preferences', label: 'How you like to train', type: 'text', placeholder: 'Full-body, splits, supersets, progressive overload...' },
       ],
     },
   ];

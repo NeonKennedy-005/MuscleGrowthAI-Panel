@@ -837,7 +837,7 @@ export function HabitsWidget({ state, setState, openModal }) {
           );
         })}
         {habits.length === 0 && (
-          <EmptyState icon="flame" title="No habits yet" hint="Track daily research practices. Read 1 paper, write 30 min, lab notebook entry."/>
+          <EmptyState icon="flame" title="No habits yet" hint="Track daily training habits. Hit protein target, 8k steps, 10 min mobility."/>
         )}
       </div>
       <button className="add-tiny" onClick={add}>+ New habit</button>
@@ -876,7 +876,7 @@ export function GoalsWidget({ state, setState, openModal }) {
           </div>
         ))}
         {goals.length === 0 && (
-          <EmptyState icon="bullseye" title="No goals yet" hint="Quarterly OKRs, dissertation milestones, anything you want to track."/>
+          <EmptyState icon="bullseye" title="No goals yet" hint="Strength targets, body-composition goals, anything you want to track."/>
         )}
       </div>
       <button className="add-tiny" onClick={add}>+ New goal</button>
@@ -1439,23 +1439,23 @@ export function DocumenterWidget({ state, setState }) {
   );
 }
 
-// ===== PhD Journey — standard milestones with status + notes =====
-// Captures the "General Journey" list: courses, prelim, lit review, IRB,
-// committee, topic, comps, defense, ProQuest. Each milestone has a status
-// (open/in-progress/completed) and an inline note.
+// ===== Training Roadmap — standard milestones with status + notes =====
+// Captures the training journey: assessment, base building, technique, program
+// design, nutrition, progression, peak, and maintenance. Each milestone has a
+// status (open/in-progress/completed) and an inline note.
 const PHD_MILESTONES = [
-  { id: 'courses', label: 'Course selection & dissertation credits', hint: 'Plan term-by-term. Check funding constraints.' },
-  { id: 'prelim', label: 'Preliminary exam', hint: 'Department format varies — consult your handbook.' },
-  { id: 'lit-review', label: 'Literature review', hint: 'Coverage + critique. Bibliography widget pairs well here.' },
-  { id: 'topic', label: 'Pick dissertation topic', hint: 'Narrow until your advisor pushes back.' },
-  { id: 'committee', label: 'Select committee', hint: 'Pros/cons of a co-chair: more buy-in, more scheduling.' },
-  { id: 'irb', label: 'IRB approval', hint: 'Allow 6–12 weeks. Pre-fill paperwork early.' },
-  { id: 'data', label: 'Data collection', hint: 'Pilot first. Plan for the inevitable instrument failure.' },
-  { id: 'comps', label: 'Comprehensive exam', hint: 'Department format varies.' },
-  { id: 'analysis', label: 'Data analysis & visualization', hint: 'Make the figures before the prose.' },
-  { id: 'writing', label: 'Write dissertation', hint: 'One chapter at a time. Aim for "good enough to defend".' },
-  { id: 'defense', label: 'Oral defense', hint: 'Slides + practice Q&A. Use the Defense Slides template.' },
-  { id: 'proquest', label: 'Final admin (ProQuest upload)', hint: 'Read the formatting checklist before you start formatting.' },
+  { id: 'courses', label: 'Baseline assessment & goal setting', hint: 'Record current lifts, measurements, and a clear goal.' },
+  { id: 'prelim', label: 'Movement screen', hint: 'Check mobility and any injury history before loading.' },
+  { id: 'lit-review', label: 'Learn the fundamentals', hint: 'Progressive overload, rep ranges, and form basics.' },
+  { id: 'topic', label: 'Pick a training split', hint: 'Full-body, upper/lower, or PPL — match it to your schedule.' },
+  { id: 'committee', label: 'Set up your gym & equipment', hint: 'Home vs. commercial: trade-offs in equipment and cost.' },
+  { id: 'irb', label: 'Dial in nutrition', hint: 'Set protein and calorie targets for your goal.' },
+  { id: 'data', label: 'Start logging workouts', hint: 'Track every session. Pilot the plan for 2 weeks first.' },
+  { id: 'comps', label: 'First progress check', hint: 'Reassess lifts and measurements at week 4–6.' },
+  { id: 'analysis', label: 'Adjust volume & progression', hint: 'Add sets or load where progress has stalled.' },
+  { id: 'writing', label: 'Run the hypertrophy block', hint: 'One block at a time. Aim for consistent progressive overload.' },
+  { id: 'defense', label: 'Deload & peak', hint: 'Plan a deload every 5–6 weeks. Use the Deload template.' },
+  { id: 'proquest', label: 'Transition to maintenance', hint: 'Lock in gains before starting the next block.' },
 ];
 
 export function PhdJourneyWidget({ state, setState }) {
@@ -1527,33 +1527,33 @@ export function PhdJourneyWidget({ state, setState }) {
   );
 }
 
-// ===== PhD Resources — curated links + open-source apps =====
-// Static curated list of useful PhD tools and resources, plus user-added links.
+// ===== Fitness Resources — curated links + apps =====
+// Static curated list of useful training/nutrition tools, plus user-added links.
 const PHD_RESOURCE_GROUPS = [
   {
-    label: 'Open-source PhD tools',
+    label: 'Training & tracking apps',
     items: [
-      { name: 'Zotero', href: 'https://www.zotero.org/', desc: 'Reference manager — free and open source' },
-      { name: 'Obsidian', href: 'https://obsidian.md/', desc: 'Local-first knowledge graph for notes' },
-      { name: 'JabRef', href: 'https://www.jabref.org/', desc: 'BibTeX-native reference manager' },
-      { name: 'Pandoc', href: 'https://pandoc.org/', desc: 'Universal document converter' },
-      { name: 'Quarto', href: 'https://quarto.org/', desc: 'Scientific publishing with R/Python/Julia' },
+      { name: 'Boostcamp', href: 'https://www.boostcamp.app/', desc: 'Free proven programs + workout logging' },
+      { name: 'Strong', href: 'https://www.strong.app/', desc: 'Simple, popular workout logger' },
+      { name: 'Hevy', href: 'https://www.hevyapp.com/', desc: 'Workout tracker with routines and history' },
+      { name: 'Liftosaur', href: 'https://www.liftosaur.com/', desc: 'Scriptable, open-source workout planner' },
+      { name: 'ExRx.net', href: 'https://exrx.net/', desc: 'Exercise library with form instructions' },
     ],
   },
   {
-    label: 'Writing & formatting',
+    label: 'Nutrition & recovery',
     items: [
-      { name: 'Overleaf', href: 'https://www.overleaf.com/', desc: 'Browser LaTeX editor with templates' },
-      { name: 'LaTeX Templates', href: 'https://www.latextemplates.com/', desc: 'Thesis, CV, poster templates' },
-      { name: 'Hemingway Editor', href: 'https://hemingwayapp.com/', desc: 'Plain-language readability check' },
+      { name: 'Cronometer', href: 'https://cronometer.com/', desc: 'Detailed calorie and micronutrient tracker' },
+      { name: 'MyFitnessPal', href: 'https://www.myfitnesspal.com/', desc: 'Large food database for macro tracking' },
+      { name: 'TDEE Calculator', href: 'https://tdeecalculator.net/', desc: 'Estimate maintenance calories fast' },
     ],
   },
   {
-    label: 'Community & career',
+    label: 'Learn & community',
     items: [
-      { name: 'Academic Twitter / #PhDChat', href: 'https://twitter.com/search?q=%23PhDChat', desc: 'Peers + advisors discussing the grind' },
-      { name: 'ORCID', href: 'https://orcid.org/', desc: 'Permanent researcher ID for citations + grants' },
-      { name: 'Conferences & CFPs (WikiCFP)', href: 'http://www.wikicfp.com/', desc: 'Upcoming deadlines across fields' },
+      { name: 'Stronger by Science', href: 'https://www.strongerbyscience.com/', desc: 'Evidence-based training and nutrition articles' },
+      { name: 'r/Fitness Wiki', href: 'https://thefitness.wiki/', desc: 'Beginner-friendly guides and program picks' },
+      { name: 'Jeff Nippard (YouTube)', href: 'https://www.youtube.com/@JeffNippard', desc: 'Science-based hypertrophy breakdowns' },
     ],
   },
 ];
@@ -1629,7 +1629,7 @@ const STUB_PLANS = {
   'outline': ['Collapsible tree', 'Drop Insights into slots', 'Promote to Deliverable section'],
   'latex': ['Render math as you type', 'Snippet library', 'Copy as image / TeX'],
   'draft-locker': ['Versioned chapter drafts', 'Diff between versions', 'Roll back any change'],
-  'gantt': ['Proposal → IRB → defense timeline', 'Critical-path highlighting', 'Drag to reschedule'],
+  'gantt': ['Base → hypertrophy → peak timeline', 'Critical-path highlighting', 'Drag to reschedule'],
   'mood': ['Daily slider', 'Trend graph', 'Correlate with productive days'],
   'sleep': ['Sleep duration vs. word output', 'Energy heatmap', 'Apple Health import'],
   'focus': ['Curated ambient playlists', 'Focus session timer', 'Auto-pause on Pomodoro break'],
@@ -1640,7 +1640,7 @@ const STUB_PLANS = {
   'datasets': ['Public datasets by domain', 'Saved searches', 'License + access notes'],
   'methods': ['When to use what test', 'Examples + citations', 'Saved templates per chapter'],
   'discounts': ['Software & services with edu pricing', 'Discount expiration tracking'],
-  'assumption': ['Names hidden assumptions', 'Asks "what if wrong?"', 'Logs to a hypothesis tree'],
+  'assumption': ['Names hidden assumptions', 'Asks "what if wrong?"', 'Logs to an assumptions list'],
   'whats-missing': ['Gap analysis on lit review', 'Compares to top venues', 'Suggests targeted reads'],
   'calibrator': ['Challenges every "results show" claim', 'Asks for the prior', 'Flags p-hacking patterns'],
 };

@@ -16,8 +16,8 @@ const DEFAULT_FEATURES = [
   { Icon: BarChart3, label: 'Track your progress on a structured canvas' },
 ];
 const DEFAULT_CANVAS_STEP = {
-  title: 'PhD Progress Canvas',
-  body: 'A dashboard view of your PhD journey — research progress, methodology, next steps, all in one place.',
+  title: 'Progress Canvas',
+  body: 'A dashboard view of your training journey — program progress, nutrition, next steps, all in one place.',
 };
 
 const buildAdvisorBody = (advisors) => {
@@ -255,7 +255,7 @@ const OnboardingTour = ({ children }) => {
   const c = useMemo(() => palette(isDark), [isDark]);
 
   const stepData = useMemo(() => ({
-    title: config?.app?.title || 'PhD Advisory Panel',
+    title: config?.app?.title || 'Advisor Panel',
     subtitle: config?.app?.subtitle || 'AI-Powered Guidance',
     features: buildFeatures(config, resolveIcon),
     advisorBody: buildAdvisorBody(advisors),

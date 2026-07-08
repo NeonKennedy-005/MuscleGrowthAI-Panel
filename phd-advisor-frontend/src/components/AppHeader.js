@@ -22,7 +22,8 @@ const AppHeader = ({
   children,
 }) => {
   const { config, resolveIcon } = useAppConfig();
-  const BrandIcon = resolveIcon ? resolveIcon('Users') : Users;
+  const logoIconName = config?.app?.logo_icon || 'Users';
+  const BrandIcon = resolveIcon ? resolveIcon(logoIconName) : Users;
 
   const goToCanvas = (view) => {
     if (onNavigateToCanvas) onNavigateToCanvas(view);

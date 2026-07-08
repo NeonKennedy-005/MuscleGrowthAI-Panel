@@ -2,18 +2,18 @@
 import Icon from './CanvasIcon';
 import { MOD } from './platform';
 
-const TOUR_KEY = 'canvas-tour-seen-cyber-v1';
+const TOUR_KEY = 'canvas-tour-seen-musclegrowth-v1';
 
 const STEPS = [
   {
-    title: 'Welcome to your Security Canvas',
+    title: 'Welcome to your Fitness Canvas',
     icon: 'shield',
-    body: 'This is your security operations workspace. Two views ΓÇö Insights (highlights from your chats) and Workspace (a customizable dashboard of widgets). It starts empty so you can build it the way you want.',
+    body: 'This is your training workspace. Two views — Insights (highlights from your chats) and Workspace (a customizable dashboard of widgets). It starts empty so you can build it the way you want.',
   },
   {
     title: 'Add widgets from the palette',
     icon: 'plus',
-    body: `Click "Add widget" on the Workspace view, or hit ${MOD}+K and search. There are 30+ widgets ΓÇö incidents, deadlines, controls, reading, plus challenge widgets that push back on weak assumptions.`,
+    body: `Click "Add widget" on the Workspace view, or hit ${MOD}+K and search. There are 30+ widgets — workouts, deadlines, tracking, notes, plus challenge widgets that push back on weak plans.`,
   },
   {
     title: 'Make it yours',
@@ -23,7 +23,7 @@ const STEPS = [
   {
     title: 'Try the challenge widgets',
     icon: 'gavel',
-    body: 'Reviewer 2, Devil\'s Advocate, and Scope Realism are tuned to push back, not validate. They\'re where the real work gets sharpened. Add them last ΓÇö when you\'re ready for honest feedback.',
+    body: 'Reviewer 2, Devil\'s Advocate, and Scope Realism are tuned to push back, not validate. They\'re where your program gets sharpened. Add them last — when you\'re ready for honest feedback.',
   },
 ];
 

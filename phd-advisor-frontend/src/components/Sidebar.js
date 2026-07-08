@@ -562,8 +562,8 @@ const Sidebar = ({
       
       {showAvatarPicker && (
         <UserAvatarPicker
-          options={avatarOptions}
-          currentId={userAvatarId}
+          avatarOptions={avatarOptions}
+          currentAvatarId={userAvatarId}
           onSelect={(id) => { onAvatarChange?.(id); setShowAvatarPicker(false); }}
           onClose={() => setShowAvatarPicker(false)}
         />

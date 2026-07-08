@@ -17,7 +17,7 @@ TOOL_DEFINITION = {
         "description": (
             "Get the current date and time in UTC and in a configured local timezone. "
             "Use when the user asks about today, deadlines, timelines, schedules, "
-            "or when accurate temporal context improves security guidance."
+            "or when accurate temporal context improves the guidance."
         ),
         "parameters": {
             "type": "object",

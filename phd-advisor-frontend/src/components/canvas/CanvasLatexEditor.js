@@ -147,7 +147,7 @@ function PdfPanel({ source, title, onClose }) {
               <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--canvas-text)', marginBottom: 6 }}>Compile failed</div>
               {error}
               <div style={{ marginTop: 10, color: 'var(--canvas-text-3)', fontSize: 11.5, fontFamily: 'var(--canvas-sans)' }}>
-                The free latex-online service can be flaky and doesn't support every package. The HTML preview to the left should still work for most thesis-shaped documents.
+                The free latex-online service can be flaky and doesn't support every package. The HTML preview to the left should still work for most long-form documents.
               </div>
             </div>
           )}

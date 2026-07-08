@@ -59,6 +59,7 @@ class AppConfig(BaseModel):
     title: str = "Advisor Canvas"
     subtitle: str = "AI-Powered Guidance"
     primary_color: str = "#7C3AED"
+    logo_icon: str = "Users"
     footer_text: str = ""
     user_avatars: List[UserAvatarOption] = []
 

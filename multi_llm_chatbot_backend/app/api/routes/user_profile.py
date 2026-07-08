@@ -30,24 +30,25 @@ PROFILE_FIELDS = [
 LIST_FIELDS = {"primary_domains", "certifications", "tools_stack"}
 
 _SELECT_OPTIONS: Dict[str, List[str]] = {
+    # NOTE: field keys are kept generic (cyber_role / organization_type) for
+    # storage compatibility; the labels/options are themed for the panel.
     "cyber_role": [
-        "Student / Learner",
-        "Career changer",
-        "SOC analyst",
-        "Security engineer",
-        "Architect / lead",
-        "Manager / director",
-        "Consultant",
+        "Beginner lifter",
+        "General fitness",
+        "Bodybuilding / hypertrophy",
+        "Powerlifting / strength",
+        "Physique / cutting",
+        "Athlete / sport-specific",
+        "Home-gym / minimal equipment",
         "Other",
     ],
     "organization_type": [
-        "Startup",
-        "Mid-size company",
-        "Enterprise",
-        "Government / public sector",
-        "Education",
-        "MSP / MSSP",
-        "Independent / job seeker",
+        "Commercial gym",
+        "Home gym",
+        "University / campus gym",
+        "CrossFit box",
+        "Outdoor / calisthenics",
+        "Hybrid (home + gym)",
     ],
 }
 

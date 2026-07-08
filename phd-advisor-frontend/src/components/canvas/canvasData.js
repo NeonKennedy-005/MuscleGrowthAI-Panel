@@ -1,8 +1,8 @@
-// Demo data for a security program lead preparing for a SOC 2 audit.
+// Demo data for a lifter running a 12-week hypertrophy block.
 
 export const DEMO_PROJECT = {
-  title: "Zero Trust Rollout — Production SaaS",
-  meta: "Security Engineer · Q2 audit prep",
+  title: "12-Week Hypertrophy Block — Upper/Lower",
+  meta: "Intermediate lifter · muscle gain phase",
 };
 
 export const INSIGHTS = [
@@ -12,75 +12,75 @@ export const INSIGHTS = [
     icon: 'graph',
     category: 'progress',
     confidence: 82,
-    summary: 'Zero Trust Phase 2 is 78% complete. MFA enforced for workforce; service accounts and legacy VPN exceptions remain the main gaps before audit sampling.',
+    summary: 'Week 6 of a 12-week upper/lower block. Upper-body volume and pressing strength are trending up; leg volume and step count are the main gaps before the next deload.',
     bullets: [
-      'Identity: <strong>MFA 94%</strong> workforce · service accounts in remediation',
-      'Network: micro-segmentation pilot on <strong>3 app tiers</strong>',
-      '<strong>Risk:</strong> 12 VPN exceptions still lack compensating controls',
+      'Strength: <strong>bench +7.5kg</strong> · overhead press +5kg since week 1',
+      'Volume: <strong>16 sets/week</strong> chest & back · legs lagging at 10',
+      '<strong>Risk:</strong> right shoulder tightness on incline pressing',
     ],
     pinned: true,
     sources: 18,
     updatedMinutesAgo: 5,
     quotes: [
-      '"MFA rollout blocked on two legacy HR integrations." — IAM workstream notes',
-      '"Auditors will sample VPN exception register first." — GRC advisor chat',
+      '"Add a second lower day before increasing upper volume." — Program Planner chat',
+      '"Warm up the rotator cuff before pressing." — Form & Safety Coach',
     ],
   },
   {
     id: 'i-method',
-    title: 'Controls posture',
+    title: 'Nutrition & recovery',
     icon: 'flask',
     category: 'theory',
     confidence: 71,
-    summary: 'SOC 2 CC6/CC7 mappings are drafted. Detection use cases cover ransomware and cred theft; log retention and IR tabletop evidence are still thin.',
+    summary: 'Protein target is being hit most days; total calories are slightly under the surplus goal. Sleep is the biggest recovery limiter this block.',
     bullets: [
-      'Mapped: <strong>CC6.1–CC6.7</strong> access controls with Okta + AWS',
-      'Open: centralized logging retention proof for <strong>365 days</strong>',
-      'Open: tabletop scenario for <strong>ransomware + exfil</strong> not yet run',
+      'Protein: <strong>1.9 g/kg</strong> avg · target 2.0–2.2 g/kg',
+      'Calories: <strong>~250 kcal under</strong> the lean-bulk surplus',
+      'Sleep: <strong>6.2 h avg</strong> — recovery and gym energy suffering',
     ],
     sources: 14,
     updatedMinutesAgo: 14,
     quotes: [
-      '"Need SIEM retention screenshots before fieldwork." — compliance advisor',
-      '"Tabletop scheduled but not executed." — IR lead notes',
+      '"Add a shake + carbs post-workout to close the calorie gap." — Nutrition Strategist',
+      '"Prioritize 7.5h sleep before adding volume." — Recovery Specialist',
     ],
   },
   {
     id: 'i-lit',
-    title: 'Threat landscape',
+    title: 'Training knowledge',
     icon: 'book',
     category: 'literature',
     confidence: 76,
-    summary: 'Strong coverage of identity attacks, SaaS misconfigurations, and supply-chain risks for your stack. Weaker on OT exposure and insider threat playbooks.',
+    summary: 'Solid grasp of progressive overload and rep ranges for chest and back. Weaker on leg-day exercise selection and how to program a deload.',
     bullets: [
-      '<strong>Coverage:</strong> MITRE techniques for cloud identity & SaaS',
-      '<strong>Gap:</strong> limited intel on <strong>OAuth consent phishing</strong> variants',
-      '<strong>Gap:</strong> no formal insider-threat escalation path documented',
+      '<strong>Coverage:</strong> hypertrophy rep ranges & progressive overload',
+      '<strong>Gap:</strong> quad vs. hip-hinge <strong>exercise selection</strong> for legs',
+      '<strong>Gap:</strong> no clear <strong>deload</strong> protocol planned',
     ],
     sources: 32,
     updatedMinutesAgo: 28,
     quotes: [
-      '"OAuth abuse is the fastest-moving thread in your sector." — threat intel advisor',
-      '"Insider playbook is a one-pager — not enough for audit." — GRC advisor',
+      '"Rotate hack squats and RDLs to balance quads and hamstrings." — Hypertrophy Coach',
+      '"Plan a deload every 5–6 weeks." — Program Planner',
     ],
   },
   {
     id: 'i-questions',
-    title: 'Open security questions',
+    title: 'Open training questions',
     icon: 'sparkles',
     category: 'theory',
     confidence: 63,
-    summary: 'Three live threads. Q1 (scope of zero trust for contractors) gates architecture sign-off. Q2–Q3 affect detection engineering priorities.',
+    summary: 'Three live threads. Q1 (adding a third training day for legs) gates the next block. Q2–Q3 affect nutrition and recovery choices.',
     bullets: [
-      '<strong>Q1:</strong> Do contractors get full ZTNA or bastion-only access?',
-      '<strong>Q2:</strong> Which SIEM detections are in-scope for SOC 2 evidence?',
-      '<strong>Q3:</strong> Is customer data in EU regions in scope for DPA addendum?',
+      '<strong>Q1:</strong> Move to a 4-day upper/lower or keep 3 full-body days?',
+      '<strong>Q2:</strong> Lean-bulk surplus size — 200 or 400 kcal over maintenance?',
+      '<strong>Q3:</strong> Cardio on rest days without hurting recovery?',
     ],
     sources: 9,
     updatedMinutesAgo: 41,
     quotes: [
-      '"Contractor access model blocks network design." — architect advisor',
-      '"EU data residency may expand audit scope." — privacy advisor',
+      '"A 4th day lets you bring legs up without cutting upper volume." — Program Planner',
+      '"Keep the surplus small to limit fat gain." — Nutrition Strategist',
     ],
   },
   {
@@ -89,18 +89,18 @@ export const INSIGHTS = [
     icon: 'arrow',
     category: 'action',
     confidence: 85,
-    summary: 'Near-term actions tied to audit date and production cutover. Two items have slipped one sprint.',
+    summary: 'Near-term actions tied to the next training week and the upcoming deload. Two items have slipped a week.',
     bullets: [
-      'Close <strong>12 VPN exceptions</strong> or document compensating controls',
-      'Run ransomware tabletop & upload minutes to evidence locker',
-      'Ship <strong>5 high-fidelity detections</strong> to production SIEM',
-      'Finalize vendor SOC 2 bridge letter for subprocessors',
+      'Add a <strong>second lower-body day</strong> and rebalance leg volume',
+      'Hit <strong>2.0 g/kg protein</strong> daily and log every meal for a week',
+      'Add <strong>10 min mobility</strong> pre-lift for the shoulder',
+      'Schedule a <strong>deload</strong> for week 7',
     ],
     sources: 7,
     updatedMinutesAgo: 9,
     quotes: [
-      '"VPN exceptions are the #1 audit finding risk." — GRC advisor',
-      '"Detections without tuning will false-positive in week one." — SOC advisor',
+      '"Under-recovered legs are the #1 progress blocker right now." — Recovery Specialist',
+      '"Track protein before adding training volume." — Nutrition Strategist',
     ],
   },
   {
@@ -109,16 +109,16 @@ export const INSIGHTS = [
     icon: 'alert',
     category: 'risk',
     confidence: 74,
-    summary: 'One technical blocker (legacy logging), one governance blocker (exception approvals). Governance is the higher audit risk.',
+    summary: 'One physical limiter (shoulder tightness), one lifestyle limiter (sleep). Sleep is the higher risk to progress this block.',
     bullets: [
-      '<strong>Technical:</strong> legacy app logs not reaching SIEM — 18% of prod traffic',
-      '<strong>Governance:</strong> exception approval SLA &gt; 10 days — auditors will flag',
+      '<strong>Physical:</strong> shoulder tightness limits incline pressing volume',
+      '<strong>Lifestyle:</strong> sleep under 6.5h is capping recovery and gym energy',
     ],
     sources: 6,
     updatedMinutesAgo: 20,
     quotes: [
-      '"Without those logs you cannot prove detective controls." — detection engineer',
-      '"Exception backlog reads as control failure." — devil\'s advocate advisor',
+      '"Without recovery you cannot express the strength you are building." — Recovery Specialist',
+      '"Fix sleep before chasing bigger lifts." — Form & Safety Coach',
     ],
   },
 ];
@@ -139,14 +139,14 @@ export const WIDGET_CATALOG = [
   { type: 'kanban', name: 'Task Board', desc: 'Drag-to-move with priority filter chips and due-date sort', icon: 'kanban', cat: 'project', defaultSize: 'L', enhanced: true },
   { type: 'deadlines', name: 'Deadlines', desc: 'Countdown plus per-deadline .ics calendar export', icon: 'calendar', cat: 'project', defaultSize: 'S', enhanced: true },
   { type: 'pomodoro', name: 'Pomodoro', desc: 'Real timer with break cycle and session counter', icon: 'timer', cat: 'project', defaultSize: 'S', enhanced: true },
-  { type: 'gantt', name: 'Milestone Timeline', desc: 'Proposal → IRB → defense', icon: 'flag', cat: 'project', defaultSize: 'L', stub: true },
+  { type: 'gantt', name: 'Milestone Timeline', desc: 'Base building → hypertrophy → peak', icon: 'flag', cat: 'project', defaultSize: 'L', stub: true },
   { type: 'meeting-log', name: 'Meeting Log', desc: 'Per-stakeholder, last contact, actions', icon: 'message', cat: 'project', defaultSize: 'M' },
   { type: 'goals', name: 'Goals / OKRs', desc: 'Quarterly milestones with progress sliders', icon: 'bullseye', cat: 'project', defaultSize: 'M' },
   { type: 'calendar', name: 'Calendar', desc: 'Month grid with deadlines and writing days', icon: 'calendar', cat: 'project', defaultSize: 'M', enhanced: true },
   { type: 'activity', name: 'Activity Feed', desc: 'Chronological log of edits across widgets', icon: 'graph', cat: 'project', defaultSize: 'M', enhanced: true },
   { type: 'documenter', name: 'Daily Documenter', desc: 'Date-stamped journal · AI weekly summary (LLM stub)', icon: 'pencil', cat: 'project', defaultSize: 'M', enhanced: true },
-  { type: 'phd-journey', name: 'Security Program Roadmap', desc: 'Milestones from assessment → hardening → audit → steady state', icon: 'flag', cat: 'project', defaultSize: 'M', enhanced: true },
-  { type: 'phd-resources', name: 'Security Resources', desc: 'Frameworks, tools, training, and community references', icon: 'star', cat: 'research', defaultSize: 'M', enhanced: true },
+  { type: 'phd-journey', name: 'Training Roadmap', desc: 'Milestones from assessment → base building → hypertrophy → peak → maintain', icon: 'flag', cat: 'project', defaultSize: 'M', enhanced: true },
+  { type: 'phd-resources', name: 'Fitness Resources', desc: 'Programs, exercise libraries, nutrition guides, and community references', icon: 'star', cat: 'research', defaultSize: 'M', enhanced: true },
 
   { type: 'mood', name: 'Mood / Burnout Check-in', desc: 'Daily slider, trend graph', icon: 'smile', cat: 'wellness', defaultSize: 'S', stub: true },
   { type: 'sleep', name: 'Sleep & Energy', desc: 'Correlate with productive days', icon: 'heart', cat: 'wellness', defaultSize: 'S', stub: true },
@@ -164,21 +164,21 @@ export const WIDGET_CATALOG = [
   { type: 'budget', name: 'Budget Tracker', desc: 'Research spend vs. cap', icon: 'wallet', cat: 'practical', defaultSize: 'S' },
   { type: 'discounts', name: 'Student Discounts', desc: 'Software & services with edu pricing', icon: 'star', cat: 'practical', defaultSize: 'S', stub: true },
 
-  { type: 'reviewer-2', name: 'Reviewer 2 Simulator', desc: 'Paste a draft → harsh peer-review-style critique', icon: 'gavel', cat: 'critic', defaultSize: 'M', critic: true },
-  { type: 'devils-advocate', name: 'Devil\'s Advocate', desc: 'Strongest counter-arguments to your hypothesis', icon: 'scale', cat: 'critic', defaultSize: 'M', critic: true },
+  { type: 'reviewer-2', name: 'Reviewer 2 Simulator', desc: 'Paste a plan → harsh, honest critique', icon: 'gavel', cat: 'critic', defaultSize: 'M', critic: true },
+  { type: 'devils-advocate', name: 'Devil\'s Advocate', desc: 'Strongest counter-arguments to your plan', icon: 'scale', cat: 'critic', defaultSize: 'M', critic: true },
   { type: 'scope-realism', name: 'Scope Realism Check', desc: 'Brutal feasibility verdict given timeline', icon: 'bullseye', cat: 'critic', defaultSize: 'M', critic: true },
   { type: 'assumption', name: 'Assumption Excavator', desc: 'Names hidden assumptions, asks "what if wrong?"', icon: 'brain', cat: 'critic', defaultSize: 'M', critic: true, stub: true },
-  { type: 'whats-missing', name: '"What\'s Missing"', desc: 'Gap analysis on lit review or method', icon: 'alert', cat: 'critic', defaultSize: 'S', critic: true, stub: true },
-  { type: 'calibrator', name: 'Confidence Calibrator', desc: 'Challenges every "results show X" claim', icon: 'scale', cat: 'critic', defaultSize: 'S', critic: true, stub: true },
+  { type: 'whats-missing', name: '"What\'s Missing"', desc: 'Gap analysis on your program or diet', icon: 'alert', cat: 'critic', defaultSize: 'S', critic: true, stub: true },
+  { type: 'calibrator', name: 'Confidence Calibrator', desc: 'Challenges every "this always works" claim', icon: 'scale', cat: 'critic', defaultSize: 'S', critic: true, stub: true },
 ];
 
 export const CATEGORIES = [
   { id: 'all', label: 'All' },
-  { id: 'research', label: 'Threat Intel' },
-  { id: 'writing', label: 'Writing' },
+  { id: 'research', label: 'Training' },
+  { id: 'writing', label: 'Logging' },
   { id: 'project', label: 'Project' },
   { id: 'wellness', label: 'Wellness' },
-  { id: 'career', label: 'Career' },
+  { id: 'career', label: 'Goals' },
   { id: 'data', label: 'Data' },
   { id: 'practical', label: 'Practical' },
   { id: 'critic', label: 'Anti-yes-man', critic: true },
@@ -193,8 +193,8 @@ const presetIds = (types) => types.map((t, i) => ({ id: `pre-${t.type}-${i}`, ..
 export const WORKSPACE_PRESETS = [
   {
     id: 'day1-soc',
-    name: 'SOC Starter',
-    desc: 'Get oriented: reading queue, notes, deadlines, kanban, pomodoro.',
+    name: 'Beginner Starter',
+    desc: 'Get oriented: reading queue, notes, deadlines, task board, pomodoro.',
     icon: 'sparkles',
     layout: presetIds([
       { type: 'reading-queue', size: 'M' },
@@ -207,8 +207,8 @@ export const WORKSPACE_PRESETS = [
   },
   {
     id: 'writing-sprint',
-    name: 'Writing Sprint',
-    desc: 'Focus mode for drafting: writing pad, outline, LaTeX, highlights, pomodoro.',
+    name: 'Program Builder',
+    desc: 'Plan your split: writing pad, outline, highlights, task board, pomodoro.',
     icon: 'pencil',
     layout: presetIds([
       { type: 'writing', size: 'M' },
@@ -221,8 +221,8 @@ export const WORKSPACE_PRESETS = [
   },
   {
     id: 'audit-prep',
-    name: 'Audit Prep',
-    desc: 'Evidence-heavy: bibliography, reading queue, notes, highlights, kanban.',
+    name: 'Cut Prep',
+    desc: 'Dial in nutrition and tracking: notes, reading queue, highlights, task board.',
     icon: 'book',
     layout: presetIds([
       { type: 'bibliography', size: 'L' },
@@ -234,8 +234,8 @@ export const WORKSPACE_PRESETS = [
   },
   {
     id: 'incident-mode',
-    name: 'Incident Mode',
-    desc: 'Active response: kanban, deadlines, challenge widgets, meeting log.',
+    name: 'Plateau Buster',
+    desc: 'Break through: planning widgets plus challenge widgets to pressure-test your program.',
     icon: 'gavel',
     layout: presetIds([
       { type: 'writing', size: 'M' },
@@ -291,7 +291,7 @@ export const EMPTY_STATE = {
   documenter: { entries: [], lastSummary: null },
   'phd-journey': {
     // Status per milestone: 'open' | 'in-progress' | 'completed'
-    // Milestones come from the standard PhD journey (course selection → ProQuest)
+    // Milestones come from the standard training roadmap (assessment → maintenance)
     statuses: {},
     notes: {},
   },

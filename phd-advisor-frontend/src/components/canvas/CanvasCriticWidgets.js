@@ -97,7 +97,7 @@ export function DevilsAdvocateWidget({ state, setState, openModal }) {
           className="btn"
           title="Open Devil's Advocate in the main chat (history lives there)"
           onClick={() => handoffToChat("Devil's Advocate",
-            `Take the position of devil's advocate on my claim: "${state.claim || 'my current hypothesis'}". Be ruthless.`)}
+            `Take the position of devil's advocate on my claim: "${state.claim || 'my current training plan'}". Be ruthless.`)}
         >
           <Icon name="message" size={13}/>Open in chat
         </button>
@@ -142,7 +142,7 @@ export function ScopeRealismWidget({ state, openModal }) {
           className="btn"
           title="Open Scope Realism in the main chat (history lives there)"
           onClick={() => handoffToChat('Scope Realism',
-            `Run a brutal feasibility check on my goal: "${state.target || 'my current research scope'}". Be specific about what's at risk.`)}
+            `Run a brutal feasibility check on my goal: "${state.target || 'my current training goal'}". Be specific about what's at risk.`)}
         >
           <Icon name="message" size={13}/>Open in chat
         </button>
@@ -158,43 +158,43 @@ export function ScopeRealismWidget({ state, openModal }) {
 const REVIEW_TEMPLATES = [
   {
     severity: 8,
-    major: 'The hypothesis is presented before its operationalization. You write that L2/3 spiking "encodes" prediction error without specifying what spike-pattern feature you will measure (rate? latency? variance?), what range of values would count as "encoding," or what would falsify the claim.',
+    major: 'The program states a goal ("get bigger and stronger") before defining what success looks like. You never specify the measurable target — which lifts, how much, by when — so there is no way to tell if the plan is working or when to change it.',
     minor: [
-      'Sample size of n=4 animals is described as "preliminary" without a power calculation or a stopping rule.',
-      'GLM with history kernel is presented as the analysis but no mention of how its outputs map to the proposed predictive-coding interpretation.',
-      'No engagement with adaptation as a confound — the obvious alternative explanation for any oddball-driven decrease in firing.',
-      'Reference to "predictive coding" is loose. Rao & Ballard, Bastos, and Friston make different commitments. Which one are you testing?',
+      'Weekly volume is described as "high" without a set count per muscle group.',
+      'Progression is listed as "add weight when you can" with no concrete rule (reps in reserve? double progression?).',
+      'Legs get one day while chest gets two, with no rationale for the imbalance.',
+      'No deload is scheduled across a 12-week block — fatigue will accumulate unmanaged.',
     ],
     suggestions: [
-      'Add a single sentence specifying the measurable signature you predict, with directionality.',
-      'Either control for arousal/pupil or acknowledge it as a limit upfront.',
-      'Add a stopping rule and target effect size before scaling beyond n=4.',
+      'Add one sentence naming the target: e.g. "bench 100kg for 5, add 5cm on arms in 12 weeks."',
+      'Pick an explicit progression rule and write it down.',
+      'Schedule a deload every 5–6 weeks and rebalance leg volume.',
     ],
   },
   {
     severity: 7,
-    major: 'You claim the GLM analyses are "consistent with" the hypothesis. This phrase is doing too much work. Consistency with PE encoding is also consistency with at least three alternative explanations (adaptation, arousal, attention). Without a positive test that PE encoding predicts but the alternatives do not, "consistent with" is unfalsifiable.',
+    major: 'You claim this split is "optimal for hypertrophy." That word is doing too much work. The layout is also compatible with several worse outcomes (junk volume, under-recovery, skipped legs). Without a way to check whether volume actually drives growth for you, "optimal" is untestable.',
     minor: [
-      'Mouse V1 is justified by convention rather than by what makes it the right model for this question.',
-      'No statement of what would change your mind.',
-      'Figure-free abstract for an empirical claim is a red flag for reviewers.',
+      'The split is justified by "that\'s what most lifters do" rather than by your schedule and recovery.',
+      'No statement of what would make you change the plan.',
+      'A program with no logged numbers is a red flag — you can\'t audit it later.',
     ],
     suggestions: [
-      'Replace "consistent with" with a specific signed prediction the data either matches or doesn\'t.',
-      'List 1-2 results that, if observed, would refute the hypothesis.',
+      'Replace "optimal" with a specific target the plan either hits or misses.',
+      'List 1–2 signals (stalled lifts, poor sleep) that would trigger a change.',
     ],
   },
   {
     severity: 9,
-    major: 'This reads like an introduction, not an abstract. There is no result. There is no number. The strongest claim is that your "preliminary analyses are consistent" with your hypothesis — which is the lowest possible bar in empirical neuroscience. If the actual finding is interesting, lead with the finding, not with the framing.',
+    major: 'This reads like a wish list, not a plan. There is no number. There is no timeframe. The strongest claim is that you want to "tone up and feel better" — which is the lowest possible bar. If you actually care about the result, lead with the measurable goal, not the vibe.',
     minor: [
-      'Word "preliminary" appears three times in three sentences. Cut two.',
-      '"Oddball stimulus paradigm" is jargon-without-citation; one sentence of definition or one citation, not zero.',
-      'No mention of layer-specificity, despite L2/3 being the core claim.',
+      'The word "consistent" appears three times in three sentences. Show it with a logged history instead.',
+      '"Functional training" is jargon-without-definition; say what you\'ll actually do.',
+      'No mention of nutrition, despite it driving most of the outcome you want.',
     ],
     suggestions: [
-      'Lead sentence: "We find that <effect>" — even if the effect is small, name it.',
-      'Cut "we hypothesize that" entirely. Hypotheses go in the intro of the paper, not the abstract.',
+      'Lead sentence: "In 12 weeks I will <specific, measurable result>."',
+      'Cut "I want to get in shape" entirely. Replace it with a lift, a weight, and a date.',
     ],
   },
 ];
@@ -313,10 +313,10 @@ export function ReviewerModal({ data, onClose }) {
 }
 
 const HARDER_COUNTERS = [
-  { lbl: 'Reverse causation', text: 'You assume PE drives spike changes. The opposite mapping — that some intrinsic cortical state drives both the spike pattern and the perceived "surprise" — is observationally indistinguishable in your design.' },
-  { lbl: 'Definition shift', text: 'You will be tempted, when results don\'t fit, to redefine "prediction error" until they do. Pre-register your operationalization or you cannot honestly claim to have tested PC.' },
-  { lbl: 'Wrong layer', text: 'Most predictive-coding accounts place PE signaling in L4 or L5b, not L2/3. Your prior for finding PE in L2/3 should be lower than you\'re writing.' },
-  { lbl: 'Mouse vs. theory', text: 'Predictive coding theories were built on primate visual hierarchies with rich top-down attention. Mouse V1 lacks several of the assumed circuits. You may be testing the theory on a substrate it doesn\'t apply to.' },
+  { lbl: 'Reverse causation', text: 'You assume the program drove your gains. The opposite is just as likely early on — newbie gains and better sleep would have driven progress on almost any plan. You may be crediting the split for something else.' },
+  { lbl: 'Goalpost shift', text: 'When the scale doesn\'t move you\'ll be tempted to redefine "progress" until it does (now it\'s "recomp," now it\'s "strength"). Pick your primary metric up front or you can\'t honestly say the plan worked.' },
+  { lbl: 'Wrong lever', text: 'You\'re tweaking exercise selection when the real bottleneck is total volume and calories. You\'re optimizing the variable that matters least.' },
+  { lbl: 'Copied context', text: 'This program was built for a lifter training 5 days a week with years of experience. On your schedule and recovery it may be testing a plan that doesn\'t apply to you.' },
 ];
 
 export function DevilsModal({ data, onClose }) {
@@ -333,7 +333,7 @@ export function DevilsModal({ data, onClose }) {
         data.onUpdate({ counters: nc });
         fireToast('Stronger counter added: "' + next.lbl + '"', 'critic');
       } else {
-        fireToast('No more counters — your hypothesis is more robust than I thought.');
+        fireToast('No more counters — your plan is more robust than I thought.');
       }
       setPushing(false);
     }, 800);
@@ -345,7 +345,7 @@ export function DevilsModal({ data, onClose }) {
         <div className="modal-icon critic"><Icon name="scale" size={18}/></div>
         <div style={{ flex: 1 }}>
           <div className="modal-title">Devil's Advocate</div>
-          <div className="modal-sub">The strongest counter-arguments to your hypothesis, ranked by how much they should worry you.</div>
+          <div className="modal-sub">The strongest counter-arguments to your plan, ranked by how much they should worry you.</div>
         </div>
         <button className="icon-btn" onClick={onClose}><Icon name="x" size={16}/></button>
       </div>
@@ -414,10 +414,10 @@ export function ScopeModal({ data, onClose }) {
         <div style={{ marginTop: 16 }}>
           <div className="label" style={{ marginBottom: 8 }}>Recommended actions</div>
           <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: 'var(--canvas-text-2)', lineHeight: 1.6 }}>
-            <li><strong style={{ color: 'var(--canvas-text)' }}>Commit to a PC formulation by May 31.</strong> Theory clarity is your bottleneck, not data.</li>
-            <li>Build a writing buffer. Your 9-day streak is great; 90 days is the minimum to absorb the inevitable lab/family/health setbacks.</li>
-            <li>Cut a chapter. A 5-chapter dissertation that ships beats a 6-chapter one that doesn't.</li>
-            <li>Calibrate against your cohort: median time-to-defense in your program is 5.8 years. You are projecting 5.2.</li>
+            <li><strong style={{ color: 'var(--canvas-text)' }}>Commit to one primary goal for this block.</strong> Trying to bulk and cut at once is your bottleneck, not effort.</li>
+            <li>Build a consistency buffer. Your 9-day streak is great; 90 days is the minimum to absorb the inevitable work/family/illness setbacks.</li>
+            <li>Cut a training day. A 3-day plan you actually run beats a 5-day one you skip.</li>
+            <li>Calibrate against reality: a natural lifter gains ~0.25–0.5% bodyweight per week when bulking. Your projected rate is faster than that.</li>
           </ul>
         </div>
       </div>

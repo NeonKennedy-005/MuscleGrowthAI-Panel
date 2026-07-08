@@ -18,7 +18,7 @@ import ProfileWalkthrough from '../components/ProfileWalkthrough';
 import ClearDataModal from '../components/ClearDataModal';
 import AccountModal from '../components/AccountModal';
 
-const ACTIVE_ADVISORS_STORAGE_KEY = 'cybersecurityActiveAdvisorIds';
+const ACTIVE_ADVISORS_STORAGE_KEY = 'muscleGrowthActiveAdvisorIds';
 
 const ChatPage = ({ user, authToken, onNavigateToHome, onNavigateToCanvas, onSignOut }) => {
   const { config, advisors, getAdvisorColors } = useAppConfig();
@@ -1081,6 +1081,32 @@ const handleNewChat = async (sessionId = null) => {
           </div>
         </div>
       </div>
+
+      {showProfileForm && (
+        <ProfileWalkthrough
+          authToken={authToken}
+          existingProfile={userProfile}
+          onClose={() => { setShowProfileForm(false); loadProfile(); }}
+        />
+      )}
+
+      {showAccount && (
+        <AccountModal
+          user={user}
+          authToken={authToken}
+          onClose={() => setShowAccount(false)}
+          onAccountUpdated={() => setShowAccount(false)}
+          onAccountDeleted={() => { setShowAccount(false); onSignOut?.(); }}
+        />
+      )}
+
+      {showClearData && (
+        <ClearDataModal
+          authToken={authToken}
+          onClose={() => setShowClearData(false)}
+          onDataCleared={() => loadProfile()}
+        />
+      )}
     </div>
   );
 };

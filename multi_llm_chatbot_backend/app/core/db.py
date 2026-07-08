@@ -10,9 +10,9 @@ party). The replacement is a single Hugging Face Storage Bucket mounted into
 the Space at ``$DATA_DIR`` (default ``/data``). Everything durable lives
 there:
 
-  ${DATA_DIR}/cybersecurity_panel.db   — SQLite database (users, chat
+  ${DATA_DIR}/muscle_growth_panel.db   — SQLite database (users, chat
                                           sessions, profiles, onboarding,
-                                          PhD canvases)
+                                          canvases)
 
 A single ``hf buckets sync hf://buckets/<org>/<bucket> ./backup`` therefore
 captures the full state and can be restored before the next redeploy.

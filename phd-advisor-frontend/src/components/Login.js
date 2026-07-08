@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Mail, Lock, ArrowRight, BookOpen, Phone } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ArrowRight, Phone } from 'lucide-react';
 import { useAppConfig } from '../contexts/AppConfigContext';
 import CopyrightNotice from './CopyrightNotice';
 import '../styles/Login.css';
 
 const Login = ({ onNavigateToSignup, onNavigateToHome }) => {
-  const { config } = useAppConfig();
+  const { config, resolveIcon } = useAppConfig();
+  const LogoIcon = resolveIcon(config?.app?.logo_icon || 'BookOpen');
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -103,7 +104,7 @@ const Login = ({ onNavigateToSignup, onNavigateToHome }) => {
         {/* Header */}
         <div className="login-header">
           <div className="logo-container">
-            <BookOpen className="logo-icon" />
+            <LogoIcon className="logo-icon" />
           </div>
           <h1 className="login-title">Welcome Back</h1>
           <p className="login-subtitle">

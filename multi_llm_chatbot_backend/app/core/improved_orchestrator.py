@@ -61,11 +61,13 @@ class ImprovedChatOrchestrator:
         if not tool_definitions:
             return ToolCallResult(text="", used_tool=False)
 
+        app_cfg = settings.app
         system_prompt = (
-            "You are a helpful cybersecurity assistant with access to external tools. "
+            f"You are a helpful assistant for {app_cfg.title} — {app_cfg.subtitle}. "
+            "You have access to external tools. "
             "Use the available tools when the user's question can be answered by one of them. "
             "Call get_current_datetime when the user asks about today, deadlines, timelines, "
-            "schedules, incident timing, or when accurate date/time context would improve "
+            "schedules, or when accurate date/time context would improve "
             "your guidance — then weave the result into your answer. "
             "If no tool is relevant, respond with a brief text answer. "
             "Format your responses using markdown."
@@ -171,8 +173,8 @@ class ImprovedChatOrchestrator:
         # Common document reference patterns
         patterns = [
             r"(?:my|the|in)\s+([a-zA-Z_\-]+\.(?:pdf|docx|txt))",  # specific files
-            r"(?:my|the)\s+(dissertation|thesis|proposal|chapter|manuscript)",  # document types
-            r"(?:in|from)\s+(?:my\s+)?([a-zA-Z_\-\s]+(?:chapter|section))",  # sections
+            r"(?:my|the)\s+(program|plan|routine|split|log|protocol|document|proposal|chapter|report)",  # document types
+            r"(?:in|from)\s+(?:my\s+)?([a-zA-Z_\-\s]+(?:section|plan))",  # sections
         ]
         
         for pattern in patterns:
@@ -557,8 +559,8 @@ class ImprovedChatOrchestrator:
         # Common patterns for document references
         document_indicators = [
             r"(?:my|the|in|from)\s+([a-zA-Z_\-]+\.(?:pdf|docx|txt|doc))",  # specific files
-            r"(?:my|the)\s+(dissertation|thesis|proposal|chapter|manuscript|paper)",  # document types
-            r"(?:in|from)\s+(?:my\s+)?([a-zA-Z_\-\s]+(?:chapter|section|proposal))",  # sections
+            r"(?:my|the)\s+(program|plan|routine|split|log|protocol|document|proposal|chapter|report)",  # document types
+            r"(?:in|from)\s+(?:my\s+)?([a-zA-Z_\-\s]+(?:section|plan|program))",  # sections
             r"(?:the|my)\s+([a-zA-Z_\-\s]+(?:document|file))",  # generic documents
         ]
         
@@ -706,12 +708,12 @@ When analyzing the document context:
             system_message = f"""{persona.system_prompt}
 
     CURRENT SESSION CONTEXT:
-    The student has uploaded the following documents: {doc_list}
+    The user has uploaded the following documents: {doc_list}
 
     DOCUMENT CONTENT:
     {document_context}
 
-    IMPORTANT: When the student refers to "my document," "my dissertation," "my proposal," etc., they are referring to one of their uploaded documents. Use the document context above to understand which specific document they mean and reference it by name in your response.
+    IMPORTANT: When the user refers to "my document," "my plan," "my program," etc., they are referring to one of their uploaded documents. Use the document context above to understand which specific document they mean and reference it by name in your response.
 
     Always cite your sources when referencing information from their documents using the format: "According to your [document_name]..." or "In your [section_name] from [document_name]..."
     """
@@ -719,9 +721,9 @@ When analyzing the document context:
             # NO DOCUMENTS - Explicitly tell persona not to reference documents
             system_message = f"""{persona.system_prompt}
 
-    IMPORTANT: The student has NOT uploaded any documents yet. Do not reference any specific documents, files, or assume you have access to their research materials.
+    IMPORTANT: The user has NOT uploaded any documents yet. Do not reference any specific documents, files, or assume you have access to their materials.
 
-    If they mention "my document," "my dissertation," "my proposal," etc., you should:
+    If they mention "my document," "my plan," "my program," etc., you should:
     1. Acknowledge that you don't have access to their specific documents
     2. Ask them to upload the relevant files for more targeted advice
     3. Provide general guidance based on best practices in your area of expertise

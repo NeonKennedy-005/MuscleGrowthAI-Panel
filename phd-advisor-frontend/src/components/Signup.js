@@ -4,7 +4,8 @@ import { useAppConfig } from '../contexts/AppConfigContext';
 import '../styles/Signup.css';
 
 const Signup = ({ onNavigateToLogin, onNavigateToHome }) => {
-  const { config } = useAppConfig();
+  const { config, resolveIcon } = useAppConfig();
+  const LogoIcon = resolveIcon(config?.app?.logo_icon || 'Shield');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -24,12 +25,12 @@ const Signup = ({ onNavigateToLogin, onNavigateToHome }) => {
     : config?.login?.academic_stages?.length
       ? config.login.academic_stages
       : [
-          { value: '', label: 'Select your cybersecurity knowledge level' },
-          { value: 'newcomer', label: 'New to cybersecurity' },
-          { value: 'foundational', label: 'Foundational' },
-          { value: 'practitioner', label: 'Practitioner' },
-          { value: 'experienced', label: 'Experienced' },
-          { value: 'expert', label: 'Expert / specialist' },
+          { value: '', label: 'Select your fitness level' },
+          { value: 'beginner', label: 'Beginner' },
+          { value: 'intermediate', label: 'Intermediate' },
+          { value: 'advanced', label: 'Advanced' },
+          { value: 'strength_focus', label: 'Strength training' },
+          { value: 'cardio_focus', label: 'Run & cardio' },
         ];
 
   const timezones = config?.login?.timezones?.length
@@ -83,7 +84,7 @@ const Signup = ({ onNavigateToLogin, onNavigateToHome }) => {
     }
     
     if (!formData.academicStage) {
-      newErrors.academicStage = 'Please select your cybersecurity knowledge level';
+      newErrors.academicStage = 'Please select your fitness level';
     }
     
     setErrors(newErrors);
@@ -148,7 +149,7 @@ const Signup = ({ onNavigateToLogin, onNavigateToHome }) => {
         {/* Header */}
         <div className="signup-header">
           <div className="logo-container">
-            <Shield className="logo-icon" />
+            <LogoIcon className="logo-icon" />
           </div>
           <h1 className="signup-title">Join Our Community</h1>
           <p className="signup-subtitle">
@@ -293,10 +294,10 @@ const Signup = ({ onNavigateToLogin, onNavigateToHome }) => {
               </div>
             </div>
 
-            {/* Cybersecurity knowledge level */}
+            {/* Fitness level */}
             <div className="form-group">
               <label htmlFor="academicStage" className="form-label">
-                Cybersecurity knowledge level
+                Fitness level
               </label>
               <div className="input-container">
                 <Shield className="input-icon" />

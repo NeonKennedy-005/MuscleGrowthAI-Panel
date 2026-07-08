@@ -1,5 +1,5 @@
 """
-OnboardingAgent — conversational profile gathering for cybersecurity advisors.
+OnboardingAgent — conversational profile gathering for fitness advisors.
 """
 
 import json
@@ -12,27 +12,30 @@ from app.core.database import get_database
 
 LOG = logging.getLogger(__name__)
 
+# NOTE: field keys are kept stable (knowledge_level, cyber_role, ...) for storage
+# compatibility with the user profile schema; the questions/descriptions below
+# are themed for a fitness / bodybuilding advisor panel.
 PROFILE_FIELDS: List[tuple] = [
-    ("knowledge_level", "What is your cybersecurity knowledge level?",
-     "Level such as newcomer, foundational, practitioner, experienced, or expert"),
+    ("knowledge_level", "What is your fitness experience level?",
+     "Level such as beginner, intermediate, or advanced"),
     ("timezone", "What time zone are you usually in?",
      "IANA timezone or region such as America/New_York, Europe/London, UTC"),
-    ("cyber_role", "What best describes your role right now?",
-     "Job or learning role: student, SOC analyst, engineer, architect, manager, career changer, etc."),
-    ("organization_type", "What type of organization are you in (or targeting)?",
-     "Startup, enterprise, government, education, MSP, or independent/job seeker"),
-    ("primary_domains", "Which security domains do you focus on most?",
-     "Comma-separated areas such as network, cloud, appsec, GRC, IR, identity, OT"),
-    ("certifications", "Do you hold or are you pursuing any certifications?",
-     "List such as Security+, CySA+, CISSP, OSCP, CCSP, or none yet"),
-    ("tools_stack", "What tools or platforms do you work with regularly?",
-     "SIEM, EDR, cloud security, ticketing, SOAR, etc."),
-    ("compliance_focus", "Any compliance or regulatory frameworks you care about?",
-     "SOC 2, ISO 27001, NIST, HIPAA, PCI-DSS, FedRAMP, or none"),
+    ("cyber_role", "What best describes your training focus right now?",
+     "Focus such as general fitness, bodybuilding/hypertrophy, powerlifting/strength, cutting, or athlete"),
+    ("organization_type", "Where do you usually train?",
+     "Commercial gym, home gym, campus gym, CrossFit box, outdoor/calisthenics, or hybrid"),
+    ("primary_domains", "Which muscle groups or areas do you focus on most?",
+     "Comma-separated areas such as chest, back, legs, arms, core, conditioning"),
+    ("certifications", "What equipment do you have access to?",
+     "List such as dumbbells, barbell, cables, bands, machines, or bodyweight only"),
+    ("tools_stack", "What apps or trackers do you use regularly?",
+     "MyFitnessPal, Strong, Hevy, Apple Health, a spreadsheet, etc."),
+    ("compliance_focus", "Any dietary approach or restrictions we should know about?",
+     "High-protein, vegetarian/vegan, cutting, bulking, allergies, or none"),
     ("current_goals", "What are you trying to accomplish in the next few months?",
-     "Incident readiness, certification, job search, architecture review, audit prep, etc."),
-    ("learning_preferences", "How do you prefer to learn new security concepts?",
-     "Hands-on labs, reading, videos, mentorship, certifications, capture-the-flag, etc."),
+     "Muscle gain, fat loss, strength PRs, first pull-up, recomposition, etc."),
+    ("learning_preferences", "How do you prefer to train?",
+     "Full-body, upper/lower or bro splits, supersets, progressive overload, etc."),
 ]
 
 
@@ -92,8 +95,8 @@ class OnboardingAgent:
 
         if not missing:
             return {
-                "reply": "Great — your security profile is complete. Your advisors will tailor depth, "
-                         "examples, and next steps to your role, tools, and goals.",
+                "reply": "Great — your fitness profile is complete. Your coaches will tailor workouts, "
+                         "nutrition, and next steps to your goals, equipment, and experience.",
                 "progress": 100,
                 "complete": True,
             }
@@ -115,7 +118,7 @@ class OnboardingAgent:
             )
         field_descriptions = "\n".join(f'- "{k}": {desc}' for k, _q, desc in missing_fields)
         system = (
-            "Extract cybersecurity profile fields from the user's message. "
+            "Extract fitness profile fields from the user's message. "
             "Return ONLY valid JSON with field names as keys. "
             "For list fields return a JSON array. "
             f"{skip_instruction}\n"
@@ -149,8 +152,8 @@ class OnboardingAgent:
         filled_summary = ", ".join(filled_parts) or "nothing yet"
         next_field_key, next_field_q, _ = missing[0]
         system = (
-            "You are a friendly cybersecurity onboarding assistant. "
-            "You help users build a profile so AI security advisors can personalize answers.\n"
+            "You are a friendly fitness onboarding assistant. "
+            "You help users build a profile so AI fitness coaches can personalize workouts and nutrition.\n"
             "RULES:\n"
             "- Respond in exactly ONE short paragraph (2-3 sentences).\n"
             "- Briefly acknowledge what they said, then ask ONE clear question.\n"
@@ -177,4 +180,4 @@ class OnboardingAgent:
             return reply
         except Exception as e:
             LOG.error(f"Question generation failed: {e}")
-            return missing[0][1] if missing else "Tell me more about your security background!"
+            return missing[0][1] if missing else "Tell me more about your fitness background!"
