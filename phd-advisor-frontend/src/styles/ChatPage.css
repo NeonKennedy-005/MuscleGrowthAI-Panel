@@ -34,6 +34,8 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  flex: 1 1 0;
+  min-width: 0; /* allow the brand title to truncate instead of pushing the tabs */
 }
 
 .modern-home-btn {
@@ -61,6 +63,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0; /* let the text column shrink so it can truncate */
 }
 
 .brand-icon {
@@ -78,6 +81,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  min-width: 0; /* enables text-overflow ellipsis on the children */
 }
 
 .brand-text h1 {
@@ -86,6 +90,9 @@
   color: var(--text-primary);
   margin: 0;
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .brand-text p {
@@ -93,12 +100,20 @@
   color: var(--text-secondary);
   margin: 0;
   line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-right {
   display: flex;
   align-items: center;
   gap: 20px;
+  /* Grow to balance header-left (keeping the tabs centered), but the default
+     min-width:auto means the controls never shrink below their content and so
+     never overlap the tabs. header-left truncates its title first. */
+  flex: 1 1 0;
+  justify-content: flex-end;
 }
 
 .header-controls {
@@ -604,7 +619,7 @@
 }
 
 .floating-input-area.sidebar-collapsed {
-  left: 70px;
+  left: 0;
 }
 
 /* Reply Banner in ChatPage - matches input width and fixes dark mode */
@@ -674,9 +689,9 @@
   overflow: hidden;
 }
 
-/* FIXED: Chat area expansion when sidebar is collapsed */
+/* Chat area reclaims full width when the sidebar is hidden */
 .main-chat-area.sidebar-collapsed {
-  margin-left: 70px; /* Width of sidebar when collapsed */
+  margin-left: 0;
 }
 
 /* Optional header sign out button */

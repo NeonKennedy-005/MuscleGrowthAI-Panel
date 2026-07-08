@@ -575,6 +575,19 @@ const Sidebar = ({
           onClick={() => onMobileToggle(false)}
         />
       )}
+
+      {/* Floating handle to bring the sidebar back once it's hidden (desktop).
+          The in-sidebar toggle is off-screen when hidden, so this is the way back. */}
+      {isCollapsed && (
+        <button
+          className="sidebar-show-handle"
+          onClick={() => setIsCollapsed(false)}
+          title="Show sidebar"
+          aria-label="Show sidebar"
+        >
+          <PanelLeft size={18} />
+        </button>
+      )}
     </>
   );
 };
