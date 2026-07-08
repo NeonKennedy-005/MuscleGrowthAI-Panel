@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
 }
-.canvas-main-area.sidebar-collapsed { margin-left: 70px; }
+.canvas-main-area.sidebar-collapsed { margin-left: 0; }
 .canvas-app-shell {
   flex: 1;
   display: flex;
@@ -232,14 +232,14 @@
 }
 .canvas-page-with-sidebar .theme-toggle .theme-icon { display: block; }
 
-/* When the tabs sit in ChatPage's flex .floating-header, absolutely-position
-   them so they center regardless of header-left/header-right widths. */
+/* Keep the tabs as a normal in-flow flex child so they never overlap the
+   brand/title on the left or the controls on the right as the window narrows.
+   They sit between two equal flex regions (header-left / header-right), which
+   keeps them roughly centered without absolute positioning. */
 .floating-header { position: sticky; }
 .floating-header > .chat-view-tabs {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  flex: 0 0 auto;
 }
 .canvas-tabs-mobile { display: none; }
 @media (max-width: 900px) {

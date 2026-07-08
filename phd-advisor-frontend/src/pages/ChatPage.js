@@ -1052,7 +1052,7 @@ const handleNewChat = async (sessionId = null) => {
             )}
           </div>
 
-          <div className="floating-input-area">
+          <div className={`floating-input-area ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
             {replyingTo && (
               <div className="reply-banner">
                 <div className="reply-info">
