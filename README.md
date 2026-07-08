@@ -47,8 +47,8 @@ This Space ships as a single Docker image built from the repository-root
 | Secret | Purpose |
 |--------|---------|
 | `JWT_SECRET_KEY` | Signs auth tokens. Set this to a long random string. |
-| `GEMINI_API_KEY` | Powers the default Gemini provider (`gemini-2.5-flash`). Get one at [Google AI Studio](https://aistudio.google.com/app/apikey). |
-| `OPENAI_API_KEY` | Optional — only if you switch `llm.provider` to `openai`. |
+| `OPENAI_API_KEY` | Powers the default OpenAI provider (`gpt-5.4-mini`). Get a key from Clary, or use your own OpenAI key. |
+| `GEMINI_API_KEY` | Optional — only if you switch `llm.provider` back to `gemini` (`gemini-2.5-flash`). |
 
 Set these under **Settings → Variables and secrets** on the Space.
 
@@ -64,7 +64,7 @@ Requires **Docker Desktop** only.
 ```bash
 # From the repo root, create a .env with at least:
 #   JWT_SECRET_KEY=some-long-random-string
-#   GEMINI_API_KEY=your-gemini-key
+#   OPENAI_API_KEY=your-openai-key
 docker compose up --build
 ```
 
@@ -82,7 +82,7 @@ cd multi_llm_chatbot_backend
 python -m venv venv
 # Windows: venv\Scripts\activate   •   macOS/Linux: source venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env         # then edit JWT_SECRET_KEY + GEMINI_API_KEY
+cp .env.example .env         # then edit JWT_SECRET_KEY + OPENAI_API_KEY
 uvicorn app.main:app --reload --port 8000
 ```
 

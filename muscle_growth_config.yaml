@@ -169,7 +169,7 @@ mongodb:
   database_name: "muscle_growth_advisor"
 
 llm:
-  provider: "gemini"
+  provider: "openai"
   gemini:
     model: "gemini-2.5-flash"
   ollama:
@@ -182,8 +182,9 @@ llm:
     neon_persona_orchestrator: "vanilla"
     neon_persona_advisors: "vanilla"
   openai:
+    # Key comes from the OPENAI_API_KEY env var / HF Space secret (never committed).
     api_key: ""
-    model: "gpt-5.4"
+    model: "gpt-5.4-mini"
     orchestrator_reasoning_effort: "low"
     persona_reasoning_effort: "none"
   resilient:
