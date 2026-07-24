@@ -242,14 +242,14 @@ const ChatPage = ({ user, authToken, onNavigateToHome, onNavigateToCanvas, onSig
         setCurrentSessionTitle(newSession.title);
         
         console.log('MongoDB session created:', newSession.id);
-        return newSession.id;
+        return { id: newSession.id, status: response.status };
       } else {
         console.error('Failed to create new session');
-        return null;
+        return { id: null, status: response.status };
       }
     } catch (error) {
       console.error('Error creating new session:', error);
-      return null;
+      return { id: null, status: 0 };
     }
   };
 
@@ -394,7 +394,8 @@ const handleNewChat = async (sessionId = null) => {
         const result = await response.json();
         if (result.status === 'success') {
           // Step 2: Immediately create MongoDB session
-          const newSessionId = await createNewSession(`Chat ${new Date().toLocaleDateString()}`);
+          const created = await createNewSession(`Chat ${new Date().toLocaleDateString()}`);
+          const newSessionId = created?.id || null;
           
           if (newSessionId) {
             // Reset all state to fresh with the new session
@@ -482,9 +483,22 @@ const handleNewChat = async (sessionId = null) => {
     // Create new session if we don't have one
     let sessionId = currentSessionId;
     if (!sessionId) {
-      sessionId = await createNewSession(inputMessage);
+      const created = await createNewSession(inputMessage);
+      sessionId = created?.id || null;
       if (!sessionId) {
         console.error('Failed to create session');
+        const authExpired = created?.status === 401;
+        setMessages(prev => [...prev, {
+          id: generateMessageId(),
+          type: 'error',
+          content: authExpired
+            ? 'Your login expired. Please sign in again to continue chatting.'
+            : 'Could not start a chat session. Please try again.',
+          timestamp: new Date()
+        }]);
+        if (authExpired && onSignOut) {
+          onSignOut();
+        }
         return;
       }
     }
@@ -514,12 +528,16 @@ const handleNewChat = async (sessionId = null) => {
     setThinkingAdvisors(['system']);
 
     try {
+      const controller = new AbortController();
+      const streamTimeout = setTimeout(() => controller.abort(), 120000);
+
       const response = await fetch(`${process.env.REACT_APP_API_URL}/chat-stream`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`,
         },
+        signal: controller.signal,
         body: JSON.stringify({
           user_input: inputMessage,
           response_length: 'medium',
@@ -564,7 +582,9 @@ const handleNewChat = async (sessionId = null) => {
               };
               setMessages(prev => [...prev, msg]);
               setThinkingAdvisors(prev => prev.filter(a => a !== d.persona_id));
-              await saveMessageToSession(msg, sessionId);
+              saveMessageToSession(msg, sessionId).catch(err =>
+                console.error('Failed to persist advisor message:', err)
+              );
               break;
             }
             case 'clarification':
@@ -587,6 +607,7 @@ const handleNewChat = async (sessionId = null) => {
                 break;
               }
               if (d.phase === 'complete') {
+                setThinkingAdvisors([]);
                 break;
               }
               if (d.persona_id != null) {
@@ -607,12 +628,17 @@ const handleNewChat = async (sessionId = null) => {
         }
       }
 
+      clearTimeout(streamTimeout);
+
     } catch (error) {
       console.error('Error sending message:', error);
+      const isAbort = error?.name === 'AbortError';
       setMessages(prev => [...prev, {
         id: generateMessageId(),
         type: 'error',
-        content: `Failed to send message: ${error.message}`,
+        content: isAbort
+          ? 'The advisor panel took too long to respond. Please try again.'
+          : `Failed to send message: ${error.message}`,
         timestamp: new Date()
       }]);
     } finally {
@@ -626,9 +652,11 @@ const handleNewChat = async (sessionId = null) => {
   // Ensure we have a session before proceeding
   let sessionId = currentSessionId;
   if (!sessionId) {
-    sessionId = await createNewSession(inputMessage);
+    const created = await createNewSession(inputMessage);
+    sessionId = created?.id || null;
     if (!sessionId) {
       console.error('Failed to create session for reply');
+      if (created?.status === 401 && onSignOut) onSignOut();
       return;
     }
   }

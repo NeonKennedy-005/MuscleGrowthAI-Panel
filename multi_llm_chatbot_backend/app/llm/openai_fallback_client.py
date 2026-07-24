@@ -36,7 +36,11 @@ class OpenAIFallbackClient(LLMClient):
 
     _ALLOWED_ROLES = {"system", "assistant", "user", "function", "tool", "developer"}
 
-    def _reasoning_kwargs(self) -> Dict[str, Any]:
+    def _reasoning_kwargs(self, *, with_tools: bool = False) -> Dict[str, Any]:
+        # gpt-5.4-mini (and similar) reject reasoning_effort together with
+        # function tools on /v1/chat/completions. Omit it for tool calls.
+        if with_tools:
+            return {}
         if not self.reasoning_effort or self.reasoning_effort == "none":
             return {}
         return {"reasoning_effort": self.reasoning_effort}
@@ -120,6 +124,7 @@ class OpenAIFallbackClient(LLMClient):
         ]
         openai_tools = tool_definitions or []
         all_tool_calls: List[ToolCallInfo] = []
+        has_tools = bool(openai_tools)
 
         try:
             for _round in range(self._MAX_TOOL_ROUNDS):
@@ -129,7 +134,7 @@ class OpenAIFallbackClient(LLMClient):
                     messages=self._normalize_messages(messages),
                     tools=openai_tools or None,
                     **{token_kwarg: max_tokens},
-                    **self._reasoning_kwargs(),
+                    **self._reasoning_kwargs(with_tools=has_tools),
                 )
                 if not self._uses_completion_tokens_param():
                     tool_kwargs["temperature"] = temperature
